@@ -1,0 +1,38 @@
+{
+  "_meta": {
+    "description": "站点→文案语言映射表（运营可维护，无需改代码）",
+    "version": "2026-09-17",
+    "fields": {
+      "name": "站点展示名（中文，供前端站点选择器展示）",
+      "language": "站点文案语言名称（英文，用于提示词注入）",
+      "language_code": "ISO 639-1 语言代码",
+      "rtl": "是否从右到左书写语言"
+    }
+  },
+  "sites": {
+    "US": {"name": "美国站 (US)", "language": "English", "language_code": "en", "rtl": false},
+    "GB": {"name": "英国站 (GB)", "language": "English", "language_code": "en", "rtl": false},
+    "AU": {"name": "澳大利亚站 (AU)", "language": "English", "language_code": "en", "rtl": false},
+    "CA": {"name": "加拿大站 (CA)", "language": "English", "language_code": "en", "rtl": false},
+    "DE": {"name": "德国站 (DE)", "language": "German", "language_code": "de", "rtl": false},
+    "FR": {"name": "法国站 (FR)", "language": "French", "language_code": "fr", "rtl": false},
+    "IT": {"name": "意大利站 (IT)", "language": "Italian", "language_code": "it", "rtl": false},
+    "ES": {"name": "西班牙站 (ES)", "language": "Spanish", "language_code": "es", "rtl": false},
+    "JP": {"name": "日本站 (JP)", "language": "Japanese", "language_code": "ja", "rtl": false},
+    "SA": {"name": "沙特站 (SA)", "language": "Arabic", "language_code": "ar", "rtl": true},
+    "AE": {"name": "阿联酋站 (AE)", "language": "Arabic", "language_code": "ar", "rtl": true},
+    "BR": {"name": "巴西站 (BR)", "language": "Portuguese", "language_code": "pt", "rtl": false},
+    "MX": {"name": "墨西哥站 (MX)", "language": "Spanish", "language_code": "es", "rtl": false},
+    "MY": {"name": "马来西亚站 (MY)", "language": "Malay", "language_code": "ms", "rtl": false},
+    "ID": {"name": "印尼站 (ID)", "language": "Indonesian", "language_code": "id", "rtl": false},
+    "TH": {"name": "泰国站 (TH)", "language": "Thai", "language_code": "th", "rtl": false},
+    "VN": {"name": "越南站 (VN)", "language": "Vietnamese", "language_code": "vi", "rtl": false},
+    "PH": {"name": "菲律宾站 (PH)", "language": "English", "language_code": "en", "rtl": false},
+    "SG": {"name": "新加坡站 (SG)", "language": "English", "language_code": "en", "rtl": false},
+    "TR": {"name": "土耳其站 (TR)", "language": "Turkish", "language_code": "tr", "rtl": false},
+    "RU": {"name": "俄罗斯站 (RU)", "language": "Russian", "language_code": "ru", "rtl": false},
+    "KR": {"name": "韩国站 (KR)", "language": "Korean", "language_code": "ko", "rtl": false}
+  },
+  "non_latin_sites": ["JP", "SA", "AE", "TH", "RU", "KR"],
+  "default_language": "English"
+}

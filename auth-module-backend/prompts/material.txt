@@ -1,0 +1,10 @@
+E-commerce material detail graphic for {product_name}, {product_state}.
+Close-up macro shots highlighting material texture and quality, {category_attributes} with {material_texture}.
+{composition}, split layout with product image and material callouts.
+Text overlay in {target_language} language describing material properties, all labels in {target_language}.
+{background_description}.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, professional design, accurate material color reproduction, {market_style} aesthetic for {region} market.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}.
+negative prompt: {negative_prompt}.

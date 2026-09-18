@@ -1,0 +1,8 @@
+Professional product photography of {product_name}, {product_state}.
+Alternate angle view showcasing product details and texture, {category_attributes} with {material_texture}.
+{background_description}, product centered with multi-angle presentation.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, accurate color reproduction, clean composition highlighting product features.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}.
+negative prompt: {negative_prompt}.

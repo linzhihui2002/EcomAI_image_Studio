@@ -1,0 +1,34 @@
+{
+  "_meta": {
+    "description": "中文场景→英文生图环境描述映射表（运营可维护，无需改代码）",
+    "version": "2026-09-17",
+    "default_env": "in a clean minimalist lifestyle setting"
+  },
+  "scenes": {
+    "居家客厅": "in a cozy modern living room with soft natural light",
+    "海边度假": "on a sunny tropical beach with the turquoise sea in the background",
+    "办公桌面": "on a tidy office desk beside a laptop and stationery",
+    "野餐": "on a picnic blanket in a green sunny park",
+    "约会咖啡馆": "on a wooden table in a warm romantic cafe",
+    "健身": "in a bright modern gym with fitness equipment in the background",
+    "厨房烹饪": "on a kitchen counter with fresh ingredients and cooking utensils",
+    "浴室": "on a marble vanity in a bright clean bathroom",
+    "卧室": "on a bedside table in a warm softly lit bedroom",
+    "户外露营": "at an outdoor campsite with a tent and woods in the background",
+    "节日送礼": "in a festive gift setting with ribbons and gift boxes",
+    "圣诞": "beside a decorated Christmas tree with warm bokeh lights",
+    "街头": "on a vibrant urban street with blurred city lights",
+    "花园": "in a lush blooming garden with sunlight filtering through leaves",
+    "婴儿房": "in a soft pastel nursery with plush toys nearby",
+    "书房": "on a wooden bookshelf desk in a quiet study with warm lamp light",
+    "车载": "on a car seat inside a clean modern car interior",
+    "瑜伽": "on a yoga mat in a serene minimal studio with morning light",
+    "泳池": "by a sparkling swimming pool on a bright summer day",
+    "酒吧": "on a bar counter with warm ambient lighting and soft bokeh",
+    "厨房餐桌": "on a dining table set with fresh dishes in a bright kitchen",
+    "户外运动": "on a mountain trail with wide open nature in the background",
+    "宠物日常": "in a cozy home corner with pet toys scattered around",
+    "夏日清凉": "in a bright breezy summer setting with light curtains",
+    "冬季温暖": "in a warm winter interior with a knitted blanket and fireplace glow"
+  }
+}

@@ -1,0 +1,10 @@
+{product_name} 电商尺寸图信息图，{product_state}。
+清晰的尺寸标注图，带尺寸注释，商品附带比例参照物展示。
+{composition}，尺寸线、箭头和标注尺寸。
+图片中所有文字、标签、数字和计量单位必须使用{target_language}。
+{background_description}。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，专业排版，清晰可读的字体，面向{region}市场的{market_style}美学。
+{quality_boosters}，{aspect_ratio_instruction}，{platform_style}。
+负面提示词：{negative_prompt}。

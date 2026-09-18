@@ -1,0 +1,10 @@
+{product_name} 电商清单信息图，{product_state}。
+有序列表布局展示商品内容或规格参数，每个项目配有图片和名称。
+{composition}，网格布局搭配图标和项目符号，{category_attributes}。
+{target_language}文案叠加，所有项目名称、数量和标签均使用{target_language}。
+{background_description}。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，干净现代的设计，清晰可读的排版，面向{region}市场的{market_style}美学。
+{quality_boosters}，{aspect_ratio_instruction}，{platform_style}。
+负面提示词：{negative_prompt}。

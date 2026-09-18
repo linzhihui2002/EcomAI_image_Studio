@@ -1,0 +1,8 @@
+{product_name} 专业商品摄影，{product_state}。
+{category_attributes}，展现{material_texture}质感。
+纯白背景（RGB 255,255,255），商品占画面85%以上，完全抠图分离。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，干净简洁的构图，色彩准确还原，背景无阴影。
+{quality_boosters}，{aspect_ratio_instruction}，{platform_style}，{platform_bg_requirement}。
+负面提示词：{negative_prompt}。

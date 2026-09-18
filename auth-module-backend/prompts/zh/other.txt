@@ -1,0 +1,9 @@
+{product_name} 的{slot_name}。
+{slot_desc}
+{category_attributes}，展现{material_texture}质感。
+{composition}。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，色彩准确还原，专业电商视觉，所有文字使用{target_language}。
+{aspect_ratio_instruction}，{quality_boosters}，{platform_style}。
+负面提示词：{negative_prompt}。

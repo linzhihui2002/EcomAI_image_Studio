@@ -1,0 +1,8 @@
+Professional product photography of {product_name}, {product_state}.
+Hero shot, front-facing angle, {category_attributes} showcasing {material_texture}.
+{background_description}, product occupies 85%+ of frame, clean minimal composition.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, commercial photography grade, accurate color reproduction.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}, {platform_bg_requirement}.
+negative prompt: {negative_prompt}.

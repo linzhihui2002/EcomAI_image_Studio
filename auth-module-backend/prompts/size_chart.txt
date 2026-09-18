@@ -1,0 +1,10 @@
+E-commerce size chart infographic for {product_name}, {product_state}.
+Clean measurement diagram with dimension annotations, product shown with scale reference.
+{composition}, dimension lines, arrows, and annotated measurements.
+ALL text, labels, numbers, and measurement units in the image MUST be in {target_language}.
+{background_description}.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, professional layout, clear readable typography, {market_style} aesthetic for {region} market.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}.
+negative prompt: {negative_prompt}.

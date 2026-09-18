@@ -1,0 +1,9 @@
+E-commerce promotional visual for {product_name}, {product_state}.
+Product featured with key selling points: {selling_points}.
+{material_texture} clearly visible, close-up detail shots of {visual_focus}.
+{composition}, marketing poster layout with text overlay in {target_language} highlighting the benefits.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, accurate color reproduction, {market_style} aesthetic for {region} market.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}.
+negative prompt: {negative_prompt}.

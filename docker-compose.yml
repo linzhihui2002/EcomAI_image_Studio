@@ -1,0 +1,237 @@
+# ============================================================
+# EcomAI Studio - Docker Compose 部署编排
+# ------------------------------------------------------------
+# 服务拓扑：
+#   frontend (nginx)  ──/api──▶  backend (gunicorn)  ──▶  mysql
+#                                      │                  redis ◀── worker (arq)
+#                                      └── uploads 数据卷 ◀─┘（backend 与 worker 共享）
+#
+# 使用方式见 docs/QUICKSTART.md（Docker Compose 一键部署）
+# ============================================================
+
+# 统一日志策略：限制单容器日志体积，避免长跑后撑满磁盘
+x-logging: &default-logging
+  driver: json-file
+  options:
+    max-size: "10m"
+    max-file: "3"
+
+# 后端与 Worker 共用的环境注入（两者镜像相同，仅启动命令不同）
+x-backend-env: &backend-env
+  MYSQL_HOST: mysql
+  MYSQL_PORT: "3306"
+  MYSQL_USER: root
+  MYSQL_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is required}
+  MYSQL_DATABASE: ${MYSQL_DATABASE:-ecomai_auth}
+  REDIS_URL: redis://redis:6379/0
+  FLASK_ENV: ${FLASK_ENV:-production}
+
+services:
+  # ------------------------------------------------------------
+  # MySQL：业务数据库（启动时自动执行 init_db.sql 初始化基础表与种子数据）
+  # ------------------------------------------------------------
+  mysql:
+    image: mysql:8.0
+    restart: unless-stopped
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      # PyMySQL 未引入 cryptography 依赖，使用原生密码插件以支持完整认证流程
+      - --default-authentication-plugin=mysql_native_password
+      - --max_connections=300
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:?MYSQL_ROOT_PASSWORD is required}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-ecomai_auth}
+      TZ: Asia/Shanghai
+    volumes:
+      - mysql_data:/var/lib/mysql
+      # 仅在数据卷为空时执行（首次初始化），表结构增量由后端启动时的 migrations 补齐
+      - ./auth-module-backend/init_db.sql:/docker-entrypoint-initdb.d/01-init.sql:ro
+    ports:
+      # 仅绑定宿主机回环地址，方便本机用客户端排障，不对外暴露
+      - "127.0.0.1:${MYSQL_HOST_PORT:-3307}:3306"
+    networks:
+      - ecomai-net
+    healthcheck:
+      test: ["CMD-SHELL", "mysqladmin ping -h 127.0.0.1 -u root -p\"$$MYSQL_ROOT_PASSWORD\" --silent"]
+      interval: 10s
+      timeout: 5s
+      retries: 12
+      start_period: 40s
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1g
+        reservations:
+          cpus: "0.25"
+          memory: 256m
+
+  # ------------------------------------------------------------
+  # Redis：异步任务队列（ARQ）与 SSE 进度事件通道
+  # 注意：任务状态存于 Redis，策略固定为 noeviction，避免内存淘汰导致任务丢失
+  # ------------------------------------------------------------
+  redis:
+    image: redis:7-alpine
+    restart: unless-stopped
+    command:
+      - redis-server
+      - --appendonly
+      - "yes"
+      - --appendfsync
+      - everysec
+      - --save
+      - "3600 1"
+      - --maxmemory
+      - 384mb
+      - --maxmemory-policy
+      - noeviction
+    volumes:
+      - redis_data:/data
+    ports:
+      - "127.0.0.1:${REDIS_HOST_PORT:-6380}:6379"
+    networks:
+      - ecomai-net
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 10
+      start_period: 10s
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 512m
+        reservations:
+          cpus: "0.25"
+          memory: 128m
+
+  # ------------------------------------------------------------
+  # backend：Flask API（gunicorn + gthread）
+  # ------------------------------------------------------------
+  backend:
+    build:
+      context: ./auth-module-backend
+      dockerfile: Dockerfile
+    image: ecomai/backend:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    env_file:
+      - ./.env
+    environment:
+      <<: *backend-env
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      # 生成图片、上传分片的持久化目录（与 worker 共享）
+      - backend_uploads:/app/uploads
+    networks:
+      - ecomai-net
+    healthcheck:
+      test: ["CMD-SHELL", "curl -fsS http://127.0.0.1:5001/api/v1/health || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 60s
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1.5g
+        reservations:
+          cpus: "0.25"
+          memory: 384m
+
+  # ------------------------------------------------------------
+  # worker：ARQ 异步任务执行器（生图、工具箱、批量任务、编辑器 Agent）
+  # 与 backend 使用同一镜像，仅启动命令不同
+  # ------------------------------------------------------------
+  worker:
+    build:
+      context: ./auth-module-backend
+      dockerfile: Dockerfile
+    image: ecomai/backend:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    command: ["python", "worker.py"]
+    env_file:
+      - ./.env
+    environment:
+      <<: *backend-env
+    depends_on:
+      mysql:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    volumes:
+      - backend_uploads:/app/uploads
+    networks:
+      - ecomai-net
+    # Worker 无 HTTP 端口，覆盖镜像内置的 HTTP 健康检查，改为校验 worker 主进程存活
+    healthcheck:
+      test: ["CMD-SHELL", "python -c \"import sys; sys.exit(0 if b'worker.py' in open('/proc/1/cmdline','rb').read() else 1)\""]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 30s
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "2.0"
+          memory: 1.5g
+        reservations:
+          cpus: "0.25"
+          memory: 384m
+
+  # ------------------------------------------------------------
+  # frontend：Nginx 托管前端静态资源，并反向代理 /api 到 backend
+  # ------------------------------------------------------------
+  frontend:
+    build:
+      context: ./ecom-ai-studio
+      dockerfile: Dockerfile
+    image: ecomai/frontend:${IMAGE_TAG:-latest}
+    restart: unless-stopped
+    depends_on:
+      backend:
+        condition: service_healthy
+    ports:
+      - "${FRONTEND_PORT:-8080}:80"
+    networks:
+      - ecomai-net
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/healthz || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+      start_period: 10s
+    logging: *default-logging
+    deploy:
+      resources:
+        limits:
+          cpus: "1.0"
+          memory: 256m
+        reservations:
+          cpus: "0.1"
+          memory: 64m
+
+# ------------------------------------------------------------
+# 自定义桥接网络：容器间以服务名互访（mysql / redis / backend / frontend）
+# ------------------------------------------------------------
+networks:
+  ecomai-net:
+    driver: bridge
+
+# ------------------------------------------------------------
+# 数据持久化卷：删除容器不丢数据，仅 `docker compose down -v` 才会清除
+# ------------------------------------------------------------
+volumes:
+  mysql_data:
+  redis_data:
+  backend_uploads:

@@ -1,0 +1,8 @@
+{product_name} 专业商品摄影，{product_state}。
+多角度展示商品细节与质感，{category_attributes}，{material_texture}材质。
+{background_description}，商品居中，多角度呈现。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，色彩准确还原，简洁构图突出商品特征。
+{quality_boosters}，{aspect_ratio_instruction}，{platform_style}。
+负面提示词：{negative_prompt}。

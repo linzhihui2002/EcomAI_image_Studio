@@ -1,0 +1,8 @@
+{product_name} 专业生活方式商品摄影，{product_state}。
+场景设定：{product_name} 自然地融入{usage_scenario}环境，{composition}。场景应体现{region}市场中{target_audience}的生活方式。
+环境细节：{background_description}，以{market_style}美学风格设计。包含微妙的场景道具和自然元素，营造深度与氛围感。
+{lighting_setup}，自然环境光衰减与柔和阴影。
+{camera_spec}，浅景深分离主体与背景。
+{style_keywords}，真实色彩还原，编辑级构图，富有情感感染力的视觉叙事。
+{aspect_ratio_instruction}，{quality_boosters}，{platform_style}。
+负面提示词：{negative_prompt}。

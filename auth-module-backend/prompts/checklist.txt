@@ -1,0 +1,10 @@
+E-commerce checklist infographic for {product_name}, {product_state}.
+Organized list layout showcasing package contents or product specifications, each item with image and name.
+{composition}, grid layout with icons and bullet points, {category_attributes}.
+Text overlay in {target_language} language, all item names, quantities, and labels in {target_language}.
+{background_description}.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, clean modern design, clear readable typography, {market_style} aesthetic for {region} market.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}.
+negative prompt: {negative_prompt}.

@@ -1,0 +1,8 @@
+Professional product photography of {product_name}, {product_state}.
+{category_attributes} showcasing {material_texture}.
+Pure white background (RGB 255,255,255), product occupies 85%+ of frame, completely isolated.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, clean minimal composition, accurate color reproduction, no shadows on background.
+{quality_boosters}, {aspect_ratio_instruction}, {platform_style}, {platform_bg_requirement}.
+negative prompt: {negative_prompt}.

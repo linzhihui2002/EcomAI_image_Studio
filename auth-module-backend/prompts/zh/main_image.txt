@@ -1,0 +1,8 @@
+{product_name} 专业商品摄影，{product_state}。
+英雄主图，正面角度，{category_attributes}，展现{material_texture}质感。
+{background_description}，商品占画面85%以上，干净简洁的构图。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，商业摄影级别，色彩准确还原。
+{quality_boosters}，{aspect_ratio_instruction}，{platform_style}，{platform_bg_requirement}。
+负面提示词：{negative_prompt}。

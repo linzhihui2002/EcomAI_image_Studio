@@ -1,0 +1,9 @@
+{slot_name} for {product_name}.
+{slot_desc}
+{category_attributes}, showcasing {material_texture}.
+{composition}.
+{lighting_setup}.
+{camera_spec}.
+{style_keywords}, accurate color reproduction, professional e-commerce visual, all text in {target_language}.
+{aspect_ratio_instruction}, {quality_boosters}, {platform_style}.
+negative prompt: {negative_prompt}.

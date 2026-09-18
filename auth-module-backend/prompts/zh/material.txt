@@ -1,0 +1,10 @@
+{product_name} 电商材质细节图，{product_state}。
+微距特写突出材质质感与品质，{category_attributes}，{material_texture}材质。
+{composition}，分栏布局，商品图搭配材质标注。
+{target_language}文案叠加描述材质属性，所有标签均使用{target_language}。
+{background_description}。
+{lighting_setup}。
+{camera_spec}。
+{style_keywords}，专业设计，材质色彩准确还原，面向{region}市场的{market_style}美学。
+{quality_boosters}，{aspect_ratio_instruction}，{platform_style}。
+负面提示词：{negative_prompt}。

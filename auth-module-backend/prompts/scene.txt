@@ -1,0 +1,8 @@
+Professional lifestyle product photography of {product_name}, {product_state}.
+Scene setting: {product_name} naturally integrated into a {usage_scenario} environment, {composition}. The scene should reflect the lifestyle of {target_audience} in the {region} market.
+Environment details: {background_description}, designed with {market_style} aesthetic. Include subtle contextual props and natural elements that create depth and atmosphere.
+{lighting_setup} with natural ambient light falloff and soft shadows.
+{camera_spec} with shallow depth of field to separate subject from background.
+{style_keywords}, authentic color reproduction, editorial-quality composition, emotionally engaging visual storytelling.
+{aspect_ratio_instruction}, {quality_boosters}, {platform_style}.
+negative prompt: {negative_prompt}.
